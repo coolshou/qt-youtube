@@ -1,12 +1,18 @@
 
-QT += core gui declarative opengl network xml sql
+QT += core gui  opengl network xml sql
+lessThan(QT_MAJOR_VERSION, 5): QT+= declarative
+greaterThan(QT_MAJOR_VERSION, 4): QT+= quick
 
 # TODO hardcoded
-
+win32 {
 # vlc
 INCLUDEPATH += .
 INCLUDEPATH += C:\vlc-2.0.1\sdk\include
 LIBS += -LC:\vlc-2.0.1\sdk\lib -llibvlc
+} else {
+#require install libvlc-dev
+LIBS += -llibvlc
+}
 
 # libMaia
 include(3rdparty/libmaia/maia.pri)
@@ -37,8 +43,9 @@ SOURCES += \
     Application.cpp \
     LibVlcInstance.cpp \
     Logger.cpp \
-    ProgramOptions.cpp \
     LogFileSink.cpp
+
+#    ProgramOptions.cpp \
 
 HEADERS  += \
     Player.h \
@@ -52,8 +59,9 @@ HEADERS  += \
     Application.h \
     LibVlcInstance.h \
     Logger.h \
-    ProgramOptions.h \
     LogFileSink.h
+
+#    ProgramOptions.h \
 
 OTHER_FILES += \
     VideoControl.qml \
