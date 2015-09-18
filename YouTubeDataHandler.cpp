@@ -28,7 +28,11 @@ void YouTubeDataHandler::finished()
         if (re.indexIn(reply->readAll()) != -1) {
             QString result = re.cap(1);
             foreach (QString line, result.split("\\u0026")) {
+				#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+				if (urls.indexIn(QUrl::fromPercentEncoding(line.toLatin1())) != -1) {
+				#else
                 if (urls.indexIn(QUrl::fromPercentEncoding(line.toAscii())) != -1) {
+				#endif
                     stream_map[urls.cap(1).toInt()] = urls.cap(2);
                 }
             }
