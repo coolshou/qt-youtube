@@ -3,4 +3,4 @@
 	url = git://github.com/wiedi/libmaia.git
 [submodule "3rdparty/qjson"]
 	path = 3rdparty/qjson
-	url = git://github.com/flavio/qjson.git
+	url = git://github.com/coolshou/qjson.git
